@@ -1,0 +1,23 @@
+1. Definição do Pino e Variáveis
+
+	-	const int pinAnalogico = A0;
+	-	Especifica que o módulo de pH está conectado ao pino analógico A0 do Arduino Uno.
+
+float valorAnalogico;
+
+	-	Armazena o valor bruto lido do sensor (entre 0 e 1023, referente à resolução do ADC de 10 bits).
+	-	float pH;
+	-	Armazena o valor de pH convertido a partir do valor analógico.
+2. Função setup()
+
+Esta função é executada uma única vez, ao ligar o Arduino.
+	-	Serial.begin(9600);
+
+3. Função loop()
+
+Esta função é executada continuamente enquanto o Arduino está ligado.
+
+	4.	Leitura do Sensor
+
+	-	valorAnalogico = analogRead(pinAnalogico);
+	-	Lê o sinal analógico do módulo de pH no pino A0.

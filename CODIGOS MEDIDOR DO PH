@@ -1,0 +1,33 @@
+// Definição do pino analógico onde o módulo de pH está conectado
+const int pinAnalogico = A0;  // Pino analógico conectado ao módulo de pH
+
+// Variáveis para armazenar os valores
+float valorAnalogico;         // Valor bruto lido do módulo (0-1023)
+float pH;                     // Valor do pH calculado
+
+// Configuração inicial
+void setup() {
+  Serial.begin(9600);  // Inicializa a comunicação serial para monitoramento
+  Serial.println("Monitoramento de pH iniciado");
+  delay(1000);         // Aguarda 1 segundo para estabilizar
+}
+
+// Loop principal
+void loop() {
+  // Lê o valor analógico do módulo de pH
+  valorAnalogico = analogRead(pinAnalogico);
+
+  // Conversão do valor analógico para o valor de pH
+  // Fórmula básica: (valor analogico * tensão de referência / resolução ADC) * fator de calibração
+  // Ajuste o fator de calibração (neste caso, 3.5) conforme necessário
+  pH = (valorAnalogico * 5.0 / 1023.0) * 3.5;
+
+  // Exibe o valor do pH no monitor serial
+  Serial.print("Valor analogico: ");
+  Serial.print(valorAnalogico);  // Exibe o valor bruto lido
+  Serial.print(" -> pH: ");
+  Serial.println(pH);            // Exibe o valor de pH calculado
+
+  // Intervalo de leitura (1 segundo)
+  delay(1000);
+}
